@@ -65,3 +65,78 @@ Then exit that terminal and open a new one to activate the virtual environment.
 [John Rofrano](https://www.linkedin.com/in/JohnRofrano/), Senior Technical Staff Member, DevOps Champion, @ IBM Research
 
 ## <h3 align="center"> © IBM Corporation 2022, 2023. All rights reserved. <h3/>
+
+# Belvinard Pouadjeu section
+
+# Challenges and Solutions Encountered During Lab Setup
+
+## 1. **Python Version Compatibility Issues**
+- **Issue**: `nose` and `pinocchio` are not compatible with **Python 3.13+** due to the removal of the `imp` module.
+- **Error**:
+
+- `ModuleNotFoundError`: No module named 'imp'
+
+- **Solution**:
+- Use `pytest` (modern alternative to `nose`).
+- Install `pytest-sugar` for colored output and better formatting.
+- Use `coverage` for test coverage reports.
+
+---
+
+## 2. **Missing `nosetests` Command in PATH**
+- **Issue**: The `nosetests` command was not recognized because the Python scripts directory was not in the system `PATH`.
+- **Error**:
+
+- `nosetests`: command not found
+
+- **Solution**:
+- Add the Python scripts directory to `PATH`:
+  ```
+  C:\Users\belvinard\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\Scripts
+  ```
+- Alternatively, use `python3 -m nose` or `python3 -m pytest`.
+
+---
+
+## 3. **No Colored Output in Git Bash**
+- **Issue**: `pytest` output was not colored in Git Bash.
+- **Solution**:
+- Use **PowerShell** or **Windows Terminal** for better color support.
+- Force color output with:
+  ```bash
+  python3 -m pytest -v --color=yes
+  ```
+- Install `pytest-sugar` for enhanced visual output.
+
+---
+
+## 4. **Installing `coverage` for Test Coverage Reports**
+- **Issue**: Needed to generate test coverage reports (similar to `nose --with-coverage`).
+- **Solution**:
+- Install `coverage`:
+  ```bash
+  python3 -m pip install coverage
+  ```
+- Run tests with coverage:
+  ```bash
+  python3 -m pytest --cov=. --cov-report=term-missing test_triangle.py -v
+  ```
+
+---
+
+## 5. **General Workflow for Running Tests**
+- **For `nose`-like output**:
+```bash
+python3 -m pytest -v
+```
+
+### For coverage reports:
+
+`python3 -m pytest --cov=. --cov-report=term-missing test_triangle.py -v`
+### Final Recommendations
+
+- Use `pytest` instead of nose for modern Python versions.
+- Use `pytest-sugar` for colored and formatted output.
+- Use `coverage` for test coverage reports.
+- Ensure the **Python scripts directory** is in your PATH for easy command access.
+
